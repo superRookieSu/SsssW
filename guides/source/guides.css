@@ -1,0 +1,46 @@
+body {
+    background-color: #f5f9fa;
+}
+
+ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+.column-container {
+    display: flex;
+}
+
+.column-content {
+    flex: 4;
+}
+
+.column-catalog {
+    flex: 1;
+}
+
+.column-catalog > details {
+    margin: 6px 12px;
+    transition: color 1s, transform 1s;
+}
+
+.column-catalog > details[open] {
+    box-shadow: 3px 3px 4px black;
+    color: green;
+    transform: rotate(-2deg);
+    transition: color 1s, transform 1s;
+}
+
+details > ol {
+    padding: 0 12px;
+}
+
+ol > li {
+    list-style-type: none;
+    padding: 8px 0px;
+}
+
+ol > li:hover {
+    outline: 1px dashed blue;
+    box-shadow: 3px 3px 4px black;
+}

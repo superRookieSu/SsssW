@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TS index</title>
+    <link rel="stylesheet" href="../source/common.css">
+</head>
+<body>
+    <div class="note">
+        <p><strong>Notice:</strong></p>
+        <ul>
+            <li><code>any: </code> let arr: any[] = [1, false, "0", {obj: true}]</li>
+            <li><code>none: </code> means nothing. but typeof(null) ==> "object"</li>
+            <li><code>&lttype&gtvalue: </code> let a = "1"; let b:number = &ltnumber&gt a;</li>
+            <li><code>value as type: </code></li>
+            <li><code>for (variable of object) ==>  for each(variable in object) </code> in ActionScript3.</li>
+            <li><code>function func_name(param1: string, <strong>param2?</strong>:string):void{}</code>: [param?: type] == option param.</li>
+            <li><code>function func_name(param1: string, <strong>...param2</strong>:string[]):void{}</code>: [...param2: type[]] .</li>
+            <li><code>var a = [1, 2]; var [b, c] = a; // b = 1, c = 2;</code></li>
+            <li><code>var a: string|number; </code>//means a can be string and number. Type1|Type2|...</li>
+            <li><code>var a: string[]|number[]; </code>//means a can be string[] and number[]. Type1[]|Type2|[]...</li>
+        </ul>
+        <p><strong>Lambda function</strong></p>
+        <ul>
+            <li><code>var func = (x:number, y: string) => {dosth...} </code>. normal lambda function</li>
+            <li><code>var func = x => {dosth...} </code>. single param.</li>
+            <li><code>var func = () => {dosth...} </code>. no param.</li>
+        </ul>
+
+        <p><strong>Interface</strong></p>
+        <pre><code>
+        interface IPerson {
+            firstName: string,
+            lastName: string,
+            sayHi: ()->string
+        }
+        var custom: IPerson {
+            firstName: "Tom",
+            lastName: "Hanks",
+            sayHi: ()->string{return firstName+lastName}
+        }
+
+        interface IMan extends IPerson, IOtherInterfacer, ...{} //interface extends
+        </code></pre>
+
+        <p><strong>Class</strong></p>
+        <pre><code>
+        class ClassName{
+            //properties
+            propertyName: string;
+
+            //constructor
+            constructor(pname: string) {
+                this.propertyName = pname;
+            }
+
+            //method
+            func_name():void {
+                //do sth...
+            }
+        }
+
+        var c = new ClassName("abc");
+
+
+        class ClassName2 extends ClassName {
+            age: number;
+            constructor(a: number) {
+                this.age = a;
+            }
+
+            //override 
+            func_name() {
+                super.func_name();      //call super.func
+
+                //do sth...
+            }
+        }
+
+        //static 
+        class StaticClass{
+            static num: number = 10;
+        }
+        StaticClass.num; //10.
+
+        //complete.
+        class Class1 extends Class1Father implement interface1{}
+        </code></pre>
+
+        <p><strong>Duck Typing</strong></p>
+        <pre><code>
+        interface IPoint {
+            x: number;
+            y:number;
+        }
+
+        function addPoints(p1: IPoint, p1: IPoint): IPoint{
+            return {x: p1.x + p2.x, y: p1.y + p2.y};
+        }
+
+        addPoints({x: 32, y: 43}, {x: 2, y: 3});    //right
+        addPoints({x: 1}, {x: 4, y: 3});        //wrong;
+        </code></pre>
+
+        <p><strong>NameSpace</strong></p>
+        <pre><code>
+        namespace SpaceName {
+            export interface iname{}
+            export class cname{}
+        }   
+
+        //use
+        var c = new SpaceName.cname();
+
+        //import ts file use '///'
+        namespace SpaceName {
+            export interface iname{}
+            export class cname{}
+
+            ///&ltrefrence path="tsfile.ts"/&gt //import tsfile;
+        }   
+
+        </code></pre>
+    </div>
+
+    
+</body>
+</html>

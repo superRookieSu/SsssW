@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="myHead">
+    <meta charset="UTF-8">
+    <title>JS Design Partterns</title>
+    <link rel="stylesheet" href="../source/common.css">
+
+    <script type="text/javascript">
+          /* jshint esversion: 6 */ 
+        var designPartterns = [
+            "Singleton"
+        ];
+
+        //onload
+        function js_dp_onload(evt) {
+            var head = document.querySelector("#myHead");
+            var myUL = document.querySelector("#dpUL");
+            designPartterns.forEach( function(element, index) {
+                var sr = document.createElement("script");
+                sr.type = "text/javascript";
+                sr.src = `source/${element}.js`;
+                head.appendChild(sr);
+
+                var li = document.createElement("li");
+                myUL.appendChild(li);
+
+                var a = document.createElement("a");
+                a.href = `source/${element}.js`;
+                a.target = "_bank";
+                a.textContent = element + "    ";
+                li.appendChild(a);
+
+                var btn = document.createElement("button");
+                btn.textContent = "result";
+                btn.onclick = () => {
+                    this[element].test();
+                };
+                li.appendChild(btn);
+            });
+        }
+    </script>
+</head>
+<body  onload="js_dp_onload()">
+    <div class="note">
+        Design Patterns:
+        <ul id="dpUL">
+        </ul>
+    </div>
+</body>
+</html>

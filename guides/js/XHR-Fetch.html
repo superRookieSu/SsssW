@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>XMLHttpRequest-Fetch</title>
+</head>
+<body>
+    <header><h1>The Store</h1></header>
+    <div>
+        <aside>
+            <div>
+                <label for="category">Choose a category</label>
+                <select name="category" id="category">
+                    <option selected>All</option>
+                    <option selected>Vagetables</option>
+                    <option selected>Meat</option>
+                    <option selected>Soup</option>
+                </select>
+            </div>
+            <div>
+                <label for="inputSearch">Enter search item:</label>
+                <input type="text" id="inputSearch" placeholder="e.g beans">
+            </div>
+            <div>
+                <button id="xhrBtn" type="button">Filter Result(xhr)</button>
+                <button id="fetchBtn" type="button">Filter Result(fetch)</button>
+            </div>
+        </aside>
+
+        <main >
+            
+        </main>
+    </div>
+
+
+</body>
+
+
+<script type="text/javascript">
+
+    var main = document.querySelector("main");
+
+    xhrBtn.onclick = onXHRSearch;
+    fetchBtn.onclick = onFetchSearch;
+
+    /*use XMLHttpRequest*/
+    function onXHRSearch() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'source/xhr_fetch/products.json');
+        xhr.responseType = "json";
+
+        xhr.onload = function () {
+            onUpdate(xhr.response);
+        };
+
+        xhr.send();
+    }
+
+    /*use Fetch*/
+    function onFetchSearch() {
+        fetch("source/xhr_fetch/products.json")
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (json){
+            onUpdate(json);
+        })
+        .catch(function (err){
+            console.log(err, "shit!!!");
+        });
+    }
+
+    function onUpdate(list) {
+        while(main.firstChild) {
+            main.removeChild(main.firstChild);
+        }
+
+        var type = category.value.toLowerCase();
+        for (var i = 0; i < list.length; i++) {
+            if(type == "all" || list[i].type == type) {
+                addItem(list[i]);
+            }
+        }
+    }
+
+    function addItem(item) {
+        var sec = document.createElement("section");
+        var img = document.createElement("img");
+        var price = document.createElement("p");
+        var h2 = document.createElement("h2");
+
+        var imgUrl = "source/xhr_fetch/images/" + item.image;
+        sec.style.background = "url("+imgUrl+") no-repeat";
+        sec.style.backgroundColor = "red";
+        sec.style.position = "relative";
+
+        h2.textContent = item.name;
+        h2.style.marginTop = 0;
+        h2.style.background = "black";
+        h2.style.color = "white";
+        sec.appendChild(h2);
+
+        price.textContent = "$" + item.price;
+        price.style.background = "black";
+        price.style.borderRadius = "15px";
+        price.style.color = "white";
+        price.style.width = "50px";
+        price.style.textAlign = "center";
+        price.style.padding = "5px";
+        price.style.position = "absolute";
+        price.style.bottom = 0;
+        price.style.right = "10px";
+        sec.appendChild(price);
+
+        main.appendChild(sec);
+    }
+
+
+
+</script>
+
+<style type="text/css">
+    body {
+        background-color: yellow;
+         border: 5px solid black;
+         width: 800px;
+         min-height: 800px;
+         margin: 0 auto;
+    }
+
+    body > div {
+        display: flex;
+    }
+
+     header {
+        border-bottom: 5px solid black;
+    }
+
+    h1 {
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        background: url("source/xhr_fetch/icons/bean_can.png") no-repeat 20% center, 
+                                url("source/xhr_fetch/icons/bean_can.png") no-repeat 80% center;
+        background-size: 48px;
+    }
+
+    aside {
+        flex: 3;
+        border-right: 5px solid black;
+        padding: 20px;
+    }
+
+    main {
+        flex: 7;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    aside  div {
+        margin-bottom: 10px;
+    }
+
+    select {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    button {
+        background-color: black;
+        border-radius: 10px;
+        color: yellow;
+        width: 100%;
+        padding: 5px;
+    }
+    section {
+        margin: 5px;
+        height: 215px;
+    }
+</style>
+</html>

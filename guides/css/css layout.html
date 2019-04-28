@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CSS layout</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../source/common.css">
+    <link rel="stylesheet" href="css_layout.css">
+    <script type="text/javascript" src="css_layout.js"></script>
+</head>
+
+
+
+<body onload="onload()">
+
+    display:
+    <ul>
+    <li>inline</li>
+    <li>block</li>
+    <li>inline-block</li>
+    <li>flex</li>
+    <li>grid</li>
+    <li>table</li>
+    </ul>
+
+<!-- =========================================================== -->
+                                                              <!-- display -->
+<!-- =========================================================== -->
+
+    <details>
+        <summary class="sum_catlog">display</summary>
+
+
+        <!-- ===================display: flex==================== -->
+
+        <div class="branch"><details>
+            <summary class="sum_intro">display: flex</summary>
+            <p class="note  branch">
+                <code>display: flex</code>  is a one-dimensional layout method for laying out items(direct children) in rows or columns.
+            </p>
+            <div class="note branch">
+              <p><strong>properties for flex container:</strong></p>
+              <code>flex-direction:</code> specifies the direction. value is <code>column or row</code>
+              <ul style="margin: 5px;">
+                  <li><code>row: </code>the default value.  the main axis flex items are laid out in horizontal</li>
+                  <li><code>row-reverse: </code> like <code>row</code> but main aixs flex items are permuted </li>
+                  <li><code>column: </code> the main axis flex items are laid out in vertical.</li>
+                  <li><code>column-reverse: </code> like <code>column</code> but main aixs flex items are permuted</li>
+              </ul>
+              <code>flex-wrap:</code> 
+              <ul style="margin: 5px;">
+                  <li><code>nowarp: </code> the default value. the flex items are laid out in single line.</li>
+                  <li><code>warp: </code> the flex items break into multiple lines.</li>
+                  <li><code>warp-reverse: </code> like <code>warp</code>, but cross-flex-items are laid out from right to left or from bottom to top</li>
+              </ul>
+              <p><strong>shorthand:</strong></p>
+              <code>flex-flow: flex-direction flex-wrap;</code> for example: <code>flex-flow: row warp;</code><br>
+
+              <br><strong>Horizontal and Vertical alignment</strong><br>
+              <code>align-items:</code> effect the flex items sit on the <strong>cross axis</strong>. 
+                  but set the <code>align-self: flex-end;</code> on flex item can override this.
+              <ul>
+                  <li><code>stretch:</code> the default, stretches all flex items to fill the parent in the direction of the cross axis.</li>
+                  <li><code>center:</code> stretches all flex items to fill the parent in the direction of the cross axis.</li>
+                  <li>... (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">guides</a>)</li>
+              </ul>
+
+              <code>justify-content: </code> effect the flex items sit on the <strong>main axis</strong>.
+              <ul>
+                  <li><code>flex-start: </code> the default. makes all flex items sit at the flex-start of the main axis.</li>
+                  <li><code>flex-end: </code> makes all flex items sit at the flex-end of the main axis.</li>
+                  <li><code>center: </code> makes all flex items sit at the center of the main axis.</li>
+                  <li><code>space-around: </code> ...</li>
+                  <li><code>space-between: </code> ...</li>
+              </ul>
+            </div>
+            <div class="note branch">
+              <p><strong>properties for flex items:</strong></p>
+              <code>flex: flex-grow flex-shrink flex-basis</code>
+              <ul>
+                  <li><code>flex-grow: 1</code> the flex grow factor of flex item.</li>
+                  <li><code>flex-shrink: 0.5</code> the flex shrink factor of flex item.</li>
+                  <li><code>flex-basis: 200px</code> the initial size of flex item that are laid out in main aixs.</li>
+              </ul>
+            </div>
+        </details></div>
+
+        <div class="branch" style="display: flex;">
+             <div class="flex_container">
+                 <div class="flex_item">1</div>
+                 <div class="flex_item">2</div>
+                 <div class="flex_item">3</div>
+                 <div class="flex_item">4</div>
+                 <div class="flex_item">5</div>
+                 <div class="flex_item">6</div>
+                 <div class="flex_item">7</div>
+                 <div class="flex_item">8</div>
+                 <div class="flex_item">9</div>
+             </div>
+             <div id="flex_sel_div" style="float: left; margin-left: 20px;border-left: 5px dashed black; padding-left: 20px;">
+                  <p><strong>flex container:</strong></p>
+                 <div>
+                     <code>flex-direction:</code>
+                     <select target-selector=".flex_container" flex-property="flex-direction" onchange="set_flex_style('flex-direction')">
+                         <option value="row">row</option>
+                         <option value="column">column</option>
+                         <option value="row-reverse">row-reverse</option>
+                         <option value="column-reverse">column-reverse</option>
+                     </select>
+                 </div>
+
+                 <div>
+                     <code>flex-wrap:</code>
+                     <select target-selector=".flex_container" flex-property="flex-wrap" onchange="set_flex_style('flex-wrap')">
+                         <option value="wrap">wrap</option>
+                         <option value="nowrap">nowrap</option>
+                         <option value="wrap-reverse">wrap-reverse</option>
+                     </select>
+                 </div>
+
+                   <p><strong>flex items:</strong></p>
+                  <div>
+                     <code>flex:</code>
+                     <select target-selector=".flex_container > .flex_item" flex-property="flex" onchange="set_flex_style('flex')">
+                         <option value="1 100px">1 100px</option>
+                         <option value="1">1</option>
+                         <option value="100px">100px</option>
+                     </select>
+                 </div>
+                 <p class="note" id="flex_code" style="width: auto;">
+                      <strong>flex container css code:</strong><br>
+                     <code flex-property="flex-direction"></code><br>
+                     <code flex-property="flex-wrap"></code><br>
+
+                     <strong>flex items css code:</strong><br>
+                     <code flex-property="flex"></code><br>
+                 </p>
+             </div>
+          </div>
+          <div class="branch" style="display: flex;">
+              <div class="align_container">
+                  <button>11111</button>
+                  <button>22222</button>
+                  <button>33333</button>
+                  <button>44444</button>
+                  <button>55555</button>
+              </div>
+              <div id="align_sel_div" style="float: left; margin-left: 20px;border-left: 5px dashed black; padding-left: 20px;">
+                      <p><strong>flex align container:</strong></p>
+                     <div>
+                         <code>align-items:</code>
+                         <select target-selector=".align_container" flex-property="align-items" onchange="set_align_style('align-items')">
+                             <option value="stretch">stretch</option>
+                             <option value="center">center</option>
+                         </select>
+                     </div>
+
+                     <div>
+                         <code>justify-content:</code>
+                         <select target-selector=".align_container" flex-property="justify-content" onchange="set_align_style('justify-content')">
+                             <option value="flex-start">flex-start</option>
+                             <option value="flex-end">flex-end</option>
+                             <option value="center">center</option>
+                             <option value="space-around">space-around</option>
+                             <option value="space-between">space-between</option>
+                         </select>
+                     </div>
+
+                       <p><strong>first button:</strong></p>
+                      <div>
+                         <code>align-self:</code>
+                         <select target-selector=".align_container > button:first-child" flex-property="align-self" onchange="set_align_style('align-self')">
+                             <option value="flex-start">flex-start</option>
+                             <option value="flex-end">flex-end</option>
+                             <option value="center">center</option>
+                         </select>
+                     </div>
+                     <p class="note" id="flex_code" style="width: auto;">
+                          <strong>flex container css code:</strong><br>
+                         <code flex-property="align-items"></code><br>
+                         <code flex-property="justify-content"></code><br>
+
+                         <strong>flex items css code:</strong><br>
+                         <code flex-property="align-self"></code><br>
+                     </p>
+                 </div>
+              </div>
+          </div>
+
+          <!-- ===================display: flex==================== -->
+          <div class="branch"><details>
+            <summary class="sum_intro">display: grid</summary>
+            <div class="note">
+              <code>display:grid</code> is a two-dimensional layout  system for the web.
+              <ul>
+                <li><code>grid</code>: block-level grid</li>
+                <li><code>inline-grid</code>: inline-level grid</li>
+                <li><code>subgrid</code>: if the grid contianer is itself a grid item.</li>
+              </ul>
+              <strong>Note: </strong><code>column, float, clear, vertial-align</code> have no effect on a grid contianer
+            </div>
+          </details></div>
+
+          <div style="display: flex">
+              <div class="div_grid1">
+                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+                <div>13</div><div>14</div>
+              </div>
+              <div  style="margin-left: 20px; border-left: 5px dashed black;padding-left: 20px;">
+                <code>
+                  grid-template-columns: repeat(3, 1fr) 30px 10%;<br>
+                  grid-template-rows: 20px auto 30%;<br>
+                  grid-gap: 10px 15px;
+                </code>
+
+                <div id="grid_sel_contianer1"><script>
+                createCSSSelect('#grid_sel_contianer1', 'justify-items', '.div_grid1', ['start', 'end', 'center', 'stretch']);
+                createCSSSelect('#grid_sel_contianer1', 'align-items', '.div_grid1', ['start', 'end', 'center', 'stretch']);
+                createCSSSelect('#grid_sel_contianer1', 'justify-content', '.div_grid1', ['start', 'end', 'center', 'stretch', 'space-around', 'space-between', 'space-evenly']);
+                  createCSSSelect('#grid_sel_contianer1', 'align-content', '.div_grid1', ['start', 'end', 'center', 'stretch', 'space-around', 'space-between', 'space-evenly']);
+                </script></div>
+
+              </div>
+            </div>
+      </details>
+
+<!-- =========================================================== -->
+                                                              <!-- float -->
+<!-- =========================================================== -->
+      <details open>
+        <summary class="sum_catlog">float</summary>
+        <div class="branch"><details>
+            <summary class="sum_intro">float</summary>
+            <p><strong>The float element will be taken out of the normal flow</strong></p>
+            <p><strong>The float will be invalid when set <code>display: absolute</code></strong></p>
+        </details></div>
+
+        <div class="branch">
+          <div style="width: 300px; height: 300px;border: 1px dashed black;">
+            <div style="width: 100px; height: 200px; border: 1px solid blue;float: left"></div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+            <div style="width: 50px;height: 50px; border:1px solid red;padding: 5px;float: left">
+                <div style="width: 30px;height: 30px; background: black;padding: 5px;color: red;">1</div>
+            </div>
+
+          </div>
+        </div>
+      </details>
+
+
+<!-- =========================================================== -->
+                                                              <!-- position -->
+<!-- =========================================================== -->
+      <details>
+        <summary class="sum_catlog">position</summary>
+        <p>position</p>
+      </details>
+      
+
+
+<!-- =========================================================== -->
+                                                              <!-- others -->
+<!-- =========================================================== -->
+      <details>
+        <summary class="sum_catlog">others</summary>
+        <p>others</p>
+      </details>
+
+</body>
+</html>
+

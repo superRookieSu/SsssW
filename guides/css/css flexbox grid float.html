@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox Grid Float</title>
+    <link rel="stylesheet" href="../source/common.css">
+    <script type="text/javascript" src="../source/common.js"></script>
+    <link rel="stylesheet" href="css_flexbox_grid_float.css">
+</head>
+
+<body onload="setCSSByCreatedSelects()">
+    <details>
+        <summary class="sum_catlog">Floats</summary>
+        <div class="note">
+            <code>Float</code><strong> vs </strong><code>Position: absolute</code>
+            <ul>
+                <li><code>float</code> element remain a part of the normal flow. <code>absolute</code> element are removed from the normal flow.</li>
+            </ul>
+            clear floats:
+            <ul>
+                <li><strong>Add Empty Div</strong> with the css code <code>style="clear:both;"</code> after the float element.</li>
+                <li><strong>Overflow</strong> , setting the <code>overflow</code> to <code>hidden</code> or <code>auto</code> on its parent element</li>
+                <li><strong>:after{display:block;clear:both}</strong></li>
+            </ul>
+        </div>
+
+        <div class="flex_common">
+            <div class="container_border" style="flex: 1" id="float_contianer">
+                <div style="background: red;height: 100px;">div_1st</div>
+                <div class="float_div">div_2st </div>
+                <!-- <div style="clear: left"></div> -->
+                <div style="background: yellow;height: 100px;" id="float_div_3">
+                    div_3st<br>::::::::::::::::::::::::::<br>:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<br>:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                </div>
+            </div>
+
+            <div style="flex: 1; margin-left: 20px;" id="float_sel_contianer">
+                <p><strong>css for contianer:</strong></p>
+                 <script>
+                     createSelectForCSS("#float_sel_contianer", "overflow", "#float_contianer", ['visible', 'auto', 'hidden']);
+                </script>
+                <p><strong>css for div_2st:</strong></p>
+                <code>left: 30px; top:100px;</code>
+                 <script>
+                     createSelectForCSS("#float_sel_contianer", "float", ".float_div", ['none', 'left', 'right']);
+                     createSelectForCSS("#float_sel_contianer", "margin-left", ".float_div", ['0', '100px', '200px']);
+                     createSelectForCSS("#float_sel_contianer", "position", ".float_div", ['static', 'relative']);
+                </script>
+                <p><strong>css for div_3st:</strong></p>
+                 <script>
+                     createSelectForCSS("#float_sel_contianer", "clear", "#float_div_3", ['none', 'left', 'right', 'both']);
+                </script>
+            </div>
+            
+        </div>
+
+    </details>
+    
+
+    <details>
+        <summary class="sum_catlog">Flexbox</summary>
+        <div class="note">
+            <p><strong>1-demensional layout system </strong></p>
+            <strong>Properties for flex container: </strong>
+            <ul>
+                <li><code>display: flex | inline-flex</code></li> 
+                <li><code>flex-direction: row | row-reverse | column | column-reverse</code></li> 
+                <li><code>flex-wrap: nowrap | wrap | wrap-reverse</code></li>
+                <li><code>flex-flow: flex-direction flex-wrap</code> the shorthand.</li>
+                <li><code>justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly</code> align all the flex items along the main axis.</li>
+                <li><code>align-items: flex-start | flex-end | center | stretch | baseline</code> align all the flex item along the cross axis.</li>
+                <li><code>align-content: flex-start | flex-end | center | stretch | space-between | space-around</code> align the flex container's lines the cross axis.
+                    <strong>For multi-lines</strong></li>
+            </ul>
+            <strong>Properties for flex items: </strong>
+            <ul>
+                <li><code>order: number</code> controls the order of flex item appear in the flex contianer.</li>
+                <li><code>flex-grow: number</code> grow factor. default 0.</li>
+                <li><code>flex-shrink: number</code> shrink factor when overflow. default 1.</li>
+                <li><code>flex-basis: length</code> init size.</li>
+                <li><code>flex: none | flex-grow flex-shrink flex-basis</code> the shorthand.</li>
+                <li><code>align-self: flex-start | flex-end</code> broken <code>align-items</code></li>
+            </ul>
+            <p><strong>Note: <code>float clear vertical-align</code> have no effect on a flex item.</strong></p>
+        </div>
+
+        <div style="display:inline-flex; flex-flow: row wrap; width: 600px; height: 300px; border: 1px solid gray;text-align: center;">
+            <div style="background: #EA6049; flex: 100%;">flex:100%</div>
+            <div style="background: #F9E309; flex: 2;">flex: 2</div>
+            <div style="background: #195FC7; flex: 6;">flex: 6</div>
+            <div style="background: #F018E9; flex: 2;">flex: 2</div>
+            <div style="background: #1CD375; flex: 100%;">flex: 100%</div>
+        </div>
+        <div style="display:inline-flex; flex-flow: row wrap; width: 600px; height: 300px; border: 1px solid gray;text-align: center; 
+        align-items: flex-start;">
+            <div style="background: #EA6049; flex: 100%;">flex:100%</div>
+            <div style="background: #F9E309; flex: 2;">flex: 2</div>
+            <div style="background: #195FC7; flex: 6; align-self: flex-end;">flex: 6; align-self: flex-end;</div>
+            <div style="background: #F018E9; flex: 2;">flex: 2</div>
+            <div style="background: #1CD375; flex: 100%;">flex: 100%</div>
+        </div>
+
+
+        <div class="flex_common">
+            <div class="container_border flex_container">
+                <div style="flex: 100%">1st - <code>flex: 100%</code></div>
+                <div>2st - </div>
+                <div style="width: 100px;">3st - <code>width: 100px;</code></div>
+                <div>4st - </div>
+                <div style="width: 100px;height: 100px;">5st - <code>width: 100px; height: 100px;</code></div>
+                <div>6st - </div>
+                <div>7st - </div>
+                <div>8st - </div>
+                <div>9st - </div>
+            </div>
+
+            <div class="container_border" id="flex_sel_container">
+                <p><strong>CSS for flex container</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "display", ".flex_container", ['flex', 'inline-flex']);
+                     createSelectForCSS("#flex_sel_container", "flex-wrap", ".flex_container", ['nowrap', 'wrap', 'wrap-reverse']);
+                     createSelectForCSS("#flex_sel_container", "flex-direction", ".flex_container", ['row', 'column', 'row-reverse', 'column-reverse']);
+                     createSelectForCSS("#flex_sel_container", "justify-content", ".flex_container", ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly']);
+                      createSelectForCSS("#flex_sel_container", "align-items", ".flex_container", ['stretch', 'flex-start', 'center', 'flex-end', 'baseline']);
+                      createSelectForCSS("#flex_sel_container", "align-content", ".flex_container", ['stretch', 'flex-start', 'center', 'flex-end', 'space-between', 'space-around']);
+
+                </script>
+
+                <p><strong>CSS for flex items:</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "margin", ".flex_container > div", ['5px', 'auto']);
+                </script>
+
+                <p><strong>CSS for flex item nth-of-type(2n+7):</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "flex", ".flex_container > div:nth-of-type(2n+7)", ['0', '1', '2', '3', '4', '5']);
+                </script>
+
+                <p><strong>CSS for flex item nth-of-type(2n+6):</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "flex", ".flex_container > div:nth-of-type(2n+6)", ['0', '1', '2', '3', '4', '5']);
+                </script>
+                <p><strong>CSS for flex item nth-of-type(2):</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "order", ".flex_container > div:nth-of-type(2)", ['0', '1', '-1', '2', '-2']);
+                </script>
+                 <p><strong>CSS for flex item nth-of-type(5) - 5st:</strong></p>
+                <script>
+                     createSelectForCSS("#flex_sel_container", "align-self", ".flex_container > div:nth-of-type(5)", ['auto', 'flex-start', 'flex-end', 'center', 'stretch']);
+                </script>
+            </div>
+        </div>
+    </details>
+
+
+    <details open>
+        <summary class="sum_catlog">Grid</summary>
+        <div class="note">
+            <p><strong>2-demensional layout system </strong></p>
+            <strong>Properties for the grid container:</strong>
+            <ul>
+                <li><code>display: grid | inline-grid</code></li>
+                <li>
+                    <code> grid-template-columns &  grid-template-rows:</code>
+                    <ul>
+                        <li>track size: can be a length(px), a per`centage(%), or a faction of the free space in the grid (using the <code>fr</code> unit)</li>
+                        <li>
+                            line-name: arbitrary name. for example:<br>
+                            <code>grid-template-columns: [first] 40px [line2] auto [line2end]</code><br>
+                            <code>grid-template-columns: [first] 40px [line2end line3start] 30% [line-end]</code>  a line can have more than one name.
+                        </li>
+                        <li>
+                            <code>repeat: </code> <code>grid-template-column: repeat(3, 20px [line-start]);</code><br>
+                            equivalent to: <code>grid-template-column: 20px [line-start] 20px [line-start] 20px [line-start]</code>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <code>grid-template: grid-template-rows / grid-template-columns</code><br>
+                    for example: <code>grid-template: auto 50px auto / 25px auto 25px</code>
+                </li>
+                <li><code>grid-template-area: </code> <a href="https://css-tricks.com/snippets/css/complete-guide-grid/#grid-animation">guides</a></li>
+                <li><code>grid-column-gap</code></code></li>
+                <li><code>grid-row-gap</code></li>
+                <li><code>grid-gap: grid-row-gap grid-row-gap</code>  the shorthand</li>
+                <li><code>justify-items</code></li>
+                <li><code>align-items</code></li>
+                <li><code>place-items</code></li>
+                <li><code>justify-content</code></li>
+                <li><code>align-content</code></li>
+                <li><code>place-content</code></li>
+                <li><code>grid-auto-columns</code></li>
+                <li><code>grid-auto-rows</code></li>
+            </ul>
+        </div>
+
+
+    </details>
+</body>
+</html>

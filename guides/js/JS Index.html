@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="myHead">
+    <meta charset="UTF-8">
+    <title>JS Index</title>
+
+    <link rel="stylesheet" href="../source/common.css">
+
+    <style type="text/css">
+    </style>
+
+    <script type="text/javascript">
+    </script>
+</head>
+<body">
+    
+
+
+
+    <pre><code>
+        数据类型、判断方法
+        执行上下文
+        变量对象、活动对象
+        原型、原型链
+        作用域、作用域链
+        闭包、垃圾回收机制
+        this指向
+        类和模块
+        继承
+        函数式编程
+        同步异步
+        JS正则表达式
+        事件模型
+        Ajax、跨域访问
+        DOM
+        BOM
+    </code></pre>
+
+    <pre><code>
+        所有的对象都有__proto__
+        所有函数的__proto__ === Function.Prototype;
+        只有函数有prototype
+
+        
+
+
+        //Object.crate 改进
+        function create($prototype) {
+            if(Object.create) {
+                return Object.create($prototype);
+            }
+
+            function F(){}
+            F.prototype = $prototype;
+            return new F();
+        }
+
+
+
+        //通用继承方法
+        function inherit(ClassChild, ClassFather) {
+             //调用create 方法创建以ClassFather.prototype为原型的对象
+             ClassChild.prototype = create(ClassFather.prototype);
+             ClassChild.prototype.constructor = ClassChild;
+        }
+
+        //父类
+        function Father(name) {
+             this.name = name;
+        }
+
+        //子类
+        function Child(name, age) {
+             Father.call(this, name);
+             this.age = age;
+        }
+
+        //实现子类继承父类
+        inherit(Child, Father); //Child.prototype.__proto__ === Father.prototype;
+
+        //创建Child实例
+        var child = new Child();
+
+        //原型链（任意实例化对象都有__proto__属性；只有函数有prototype属性）：
+        console.log(child.__proto__ === Child.prototype); //true
+        console.log(Child.prototype.__proto__ === Father.prototype); //true
+        console.log(Father.prototype.__proto__ === Object.prototype); //true
+        console.log(Object.prototype.__proto__ === null); //true
+
+        console.log(child.__proto__ === Child.prototype); //true
+        console.log(Child.__proto__.__proto__ === Father.prototype); //true
+        console.log(Child.__proto__.__proto__ .__proto__ === Object.prototype); //true
+        console.log(Child.__proto__.__proto__ .__proto__.__proto__ === null); //true
+
+        //扩展函数原型链：
+        console.log(Object.__proto__ === Function.prototype); //true
+        console.log(Function.prototype.__proto__ === Object.prototype); //true
+        console.log(Object.prototype.__proto__ === null); //true
+
+        //函数同样是对象, 所有函数的__proto__ 都是Function.prototype;
+        console.log(Child.__proto__ === Function.prototype); //true
+        console.log(Object.__proto__ === Function.prototype); //true
+        console.log(Function.__proto__ === Function.prototype); //true
+    </code></pre>
+
+    <pre><code>
+    var Foo = function (){};
+    var foo = new Foo();
+
+    foo.__proto__ === Foo.prototype.
+    Foo.prototype.__proto__  === Object.prototype
+    Foo.__proto__ ==== Function.prototype.
+    Function.prototype.__proto__ == Object.prototype.
+    Object.Prototype.__proto__ === null;
+
+
+    var obj = {
+        x:10,
+        func: function (){
+            function f() {
+                console.log(this);  //window
+            }
+            f();
+        }
+        
+    };
+
+    obj.func();
+
+
+    var x = 10;
+    function fun() {
+        console.log(x);
+    }
+
+    var obj = {
+        x:20,
+        b:30,
+        f: fun
+    };
+    obj.f();
+    fun();
+
+    
+    function foo(f) {
+        f();
+    }
+
+    function foo2() {
+        console.log(this);
+    }
+
+    foo(foo2);
+
+
+    </code></pre>
+
+
+    <div class="note">
+        <p><strong>Execution Context:</strong></p>
+        Execution Context = Variable object +  Scope chain + thisValue.
+        <ul>
+            <li>
+                Variable Object = variables + function declaration (<span style="color: red;">not function expression</span>);
+            </li>
+            <li>
+                Activation Object (for function) = formal parameters + arguments + function declaration
+                 (<span style="color: red;">not function expression</span>);
+            </li>
+        </ul>
+
+    </div>
+    
+</body>
+
+</html>

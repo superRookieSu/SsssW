@@ -1,0 +1,127 @@
+:root{
+    --branch_left: -20px;
+    --branch_top: 20px;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+code {
+    background-color: rgb(220, 220, 220, 0.5);
+}
+
+.card {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    line-height: 1.5;
+    box-shadow: 4px 4px 2px 2px rgba(0,0,0,0.3);
+}
+
+.note {
+    background-color: #fff3d4;
+    border-left: 4px solid #f6b73c;
+    border-radius: 10px; 
+    padding: 20px;
+    margin: 10px;
+}
+
+.chapter {
+    padding: 0 4px 0 40px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+
+
+.branch {
+    position: relative;
+}
+.branch:before {
+    position: absolute;
+    content: "";
+    display: block;
+    border-left: 2px solid gray;
+    border-bottom: 2px solid gray;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 3px;
+    width: 15px;
+    height: calc(50% + var(--branch_top));
+    left: var(--branch_left);
+    top: calc(-1*var(--branch_top));
+}
+.branch:not(:last-child):after {
+    position: absolute;
+    content: attr(margin);
+    display:block;
+    border-left: 2px solid red;
+    border-left: 2px solid gray;
+    height: calc(50% + 10px);
+    left: var(--branch_left);
+    top: 50%;
+}
+
+.sum_catlog{
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    transition: filter 0.2s, background 0.2s;
+    cursor: pointer;
+}
+details[open] > .sum_catlog, .sum_catlog:hover{
+     filter: drop-shadow(5px 5px 2px black);
+}
+.sum_catlog~* {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 3px 3px gray;
+    padding: 20px;
+    margin: 20px;
+}
+
+
+
+.sum_intro {
+    position: relative;
+    list-style: none;
+    display: inline-block;
+    padding: 2px 6px 2px 40px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.3rem;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+     box-shadow: 4px 6px 2px gray;
+}
+.sum_intro:after {
+    position: absolute;
+    content: "+";
+    margin: 0 10px;
+    padding: 0 10px;
+    background: red;
+    border-radius: 1rem;
+    width: 1rem;
+    height: 2rem;
+    text-align: center;
+    box-shadow: 4px 6px 2px gray;
+}
+details[open] > .sum_intro:after {
+    content: "-";
+}
+
+
+.select_created_js {
+    background-color: rgb(220, 220, 220, 0.5);
+    min-width: 120px;
+    margin: 5px;
+}
+
+

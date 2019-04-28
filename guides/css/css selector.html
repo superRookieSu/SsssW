@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Selector</title>
+    <link rel="stylesheet" href="../source/common.css">
+    <link rel="stylesheet" href="css_selector.css">
+    <script type="text/javascript" src="css_selector.js"></script>
+</head>
+<body onload="onload()">
+    <div class="main_div">
+
+
+
+
+        <details class="typeDetails">
+            <summary><strong>Simple Selector</strong></summary>
+            <div class="branch card">
+                Type Selector: <code>p{}</code><br>
+                Class Selector: <code>.class{}</code><br>
+                ID Selector: <code>#id{}</code><br>
+                Universal Selector: <code>*{}</code><br>
+            </div>
+        </details>
+
+
+
+
+
+
+        <details class="typeDetails">
+            <summary><strong>Attribute Selector</strong></summary>
+            <div class="branch card">
+                <p><span class="chapter">Introduction</span></p>
+                <div class="note">
+                    <strong>Presence and value attribute selectors:</strong><br>
+                    <ul>
+                        <li><code>[attr]{}</code>: have the attribute <code>attr</code>, whatever it's value;</li>
+                        <li><code>[attr=val]{}</code>: only <code>attr</code> === <code>val</code>;</li>
+                        <li><code>[attr~=val]{}</code>: only the attribute <code>val</code> is one of the <strong>'space-separated'</strong> list;</li>
+                    </ul>
+
+                    <strong>Substring value attribute selectors:</strong>
+                    <ul>
+                        <li><code>[attr^=val]{}</code>: <code>attr</code> must start with <code>val</code>;</li>
+                        <li><code>[attr$=val]{}</code>: <code>attr</code> must end with <code>val</code>;</li>
+                        <li><code>[attr*=val]{}</code>: <code>value</code> contains <code>val</code>;</li>
+                    </ul>
+                </div>
+        
+            </div>
+
+            <div class="branch card">
+                <p><span class="chapter">Example</span></p>
+                <div style="margin: 5px;">
+                    <label for="attr_sel">choose the selector :</label><br>
+                    <code>document.getElementById('attrContainer').querySelector("</code>
+                    <select name="attr_sel" class="selec" onchange="setAttrSelectorStyles('attrContainer', event.currentTarget.value)">
+                        <option value="[data-test]" selected="selected">[data-test]</option>
+                        <option value="[data-test='hello']">[data-test='hello']</option>
+                        <option value="[data-test~='hello']">[data-test~='hello']</option>
+                        <option value="[data-test^='hello']">[data-test^='hello']</option>
+                        <option value="[data-test$='world']">[data-test$='world']</option>
+                        <option value="[data-test*='hello']">[data-test*='hello']</option>
+                    </select>
+                    <code>"){border-color: blue;}</code>
+                </div>
+        
+               <div id="attrContainer" style="display: flex; flex-wrap: wrap;">
+                   <div class="attr_div" data-test><code>data-test</code></div>
+                   <div class="attr_div" data-test="hello"><code>data-test="hello"</code></div>
+                   <div class="attr_div" data-test="hello world"><code>data-test="hello world"</code></div>
+                   <div class="attr_div" data-test="he llo wor ld"><code>data-test="he llo wor ld"</code></div>
+                   <div class="attr_div" data-test="helloworld"><code>data-test="helloworld"</code></div>
+                   <div class="attr_div" data-test="@helloworld@"><code>data-test="@helloworld@"</code></div>
+               </div>
+            </div>
+        </details>
+
+
+
+
+
+
+
+        <details class="typeDetails">
+            <summary><strong>combinators and selector lists</strong></summary>
+            <div class="branch card">
+                <p><span class="chapter">Introduction</span></p>
+                <div class="note">
+                    <strong>combinators and selector lists:</strong><br>
+                    <ul>
+                        <li><code>A, B</code>:  <code>A</code> or <code>B</code>;</li>
+                        <li><code>A B</code>:   <code>B</code> that is a <strong>descendant</strong> of <code>A</code> (<code>B</code> is child of <code>A</code> or <code>A's</code> child's child's child);</li>
+                        <li><code>A > B</code>:  element mathing B that is a <strong>direct</strong> child of an element matching <code>A</code>;</li>
+                        <li><code>A + B</code>:  <code>B</code> that is the next <strong>sibling</strong> of <code>A</code>;</li>
+                        <li><code>A ~ B</code>:  <code>B</code> that is one of the next <strong>sibling</strong> A;</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="branch card">
+                <p><span class="chapter">Example : <code>A, B</code></span></p>
+                <div class="note">
+                    <code>#d1, .c1, div[name="n1"] {<br>&nbsp;&nbsp;&nbsp;&nbsp;width: 100px; height: 100px; border: 2px dashed blue; margin: 5px;<br>}</code>
+                </div>
+
+                <div style="display: flex;">
+                    <div id="d1"><code>id="d1"</code></div>
+                    <div class="c1"><code>class="c1"</code></div>
+                    <div name="n1"><code>name="n1"</code></div>
+                </div>
+            </div>
+
+
+             <div class="branch card">
+                <p><span class="chapter">Example : <code>A B</code></span></p>
+                <div class="note">
+                    <code>.c2 div {<br>&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid blue; margin: 10px; margin: 5px;<br>}</code><br>
+                    <code>B1, B2, C1, C2</code> all matching
+                </div>
+
+                <div style="padding: 10px; border: 1px solid black;" class="c2">
+                    <code>class="c2"</code> (A) 
+                    <div>
+                        B1 (parent is A)
+                        <div>
+                            C1 (parent is B1)
+                        </div>
+                    </div>
+                    <div>
+                        B2 (parent is A)
+                        <div>
+                            C2 (parent is B2)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="branch card">
+                <p><span class="chapter">Example : <code>A>B</code></span></p>
+                <div class="note">
+                    <code>.c5>div {<br>&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid blue; margin: 10px; margin: 5px;<br>}</code><br>
+                    <code>B1, B2</code> is direct child matching <br>
+                    <code>C1, C2</code> is descendant but not direct child mismatching <br>
+
+                </div>
+
+                <div style="padding: 10px; border: 1px solid black;" class="c5">
+                    <code>class="c5"</code> (A) 
+                    <div>
+                        B1 (parent is A)
+                        <div style="outline: 1px dashed black;">
+                            C1 (parent is B1)
+                        </div>
+                    </div>
+                    <div>
+                        B2 (parent is A)
+                        <div style="outline: 1px dashed black;">
+                            C2 (parent is B2)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+              <div class="branch card">
+                <p><span class="chapter">Example : <code>A+B</code></span></p>
+                <div class="note">
+                    <code>.c3+div {<br>&nbsp;&nbsp;&nbsp;&nbsp;background: red;<br>}</code>
+                </div>
+                 <div style="padding: 10px; border: 1px solid black; display: flex;">
+                    <div class="c3" style="border: 1px solid blue; flex: 1;margin: 5px">
+                        <code>class="c3"</code> (A)
+                    </div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                 </div>
+            </div>
+
+            <div class="branch card">
+                <p><span class="chapter">Example : <code>A~B</code></span></p>
+                <div class="note">
+                    <code>.c4~div {<br>&nbsp;&nbsp;&nbsp;&nbsp;background: red;<br>}</code>
+                </div>
+                <div style="padding: 10px; border: 1px solid black; display: flex;">
+                    <div class="c4" style="border: 1px solid blue; flex: 1;margin: 5px">
+                        <code>class="c4"</code> (A)
+                    </div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                    <div style="border: 1px solid blue; flex: 1;margin: 5px">A'brother</div>
+                 </div>
+            </div>
+        </details>
+
+
+        <details class="typeDetails" open>
+            <summary><strong>Pseudo Selector</strong></summary>
+            <div class="branch card">
+                <div class="note">
+                    <ul>
+                        <li><code>:first-child</code> select the first element within another element</li>
+                        <li><code>:last-child</code> select the last element within another element</li>
+                        <li><code>:nth-child(index)</code> select the <code>index</code> element within another element(in order)</li>
+                        <li><code>:nth-last-child(index)</code> select the <code>index</code> element within another element from the back (reverse order)</li>
+                        <li><code>:only-child</code> select element that it is the only element inside of its parent</li>
+
+                        <li><code>:only-of-type</code> select the element of that type (the element is the only element inside its parent)</li>
+                        <li><code>:first-of-type</code> select the first element of that type within other element</li>
+                        <li><code>:last-of-type</code> select the last element of that type within other element</li>
+                        <li>
+                            <code>:nth-of-type()</code>
+                            <ul>
+                                <li><code>:nth-of-type(index)</code> select the <code>index</code> element of that type within other element</li>
+                                <li><code>:nth-of-type(odd)</code> select the <code>odd</code> element of that type within other element(1th, 3th, 5th...)</li>
+                                <li><code>:nth-of-type(even)</code> select the <code>even</code> element of that type within other element(2th, 4th, 6th....)</li>
+                                <li><div>
+                                    <code>:nth-of-type(An+b)</code> nth = b + A * n, n start at 0; (:nth-of-type(2n+1) ==> (1, 3, 5,...))<br>
+                                </div></li>
+                            </ul>
+                        </li>
+                        <li><code>:empty</code> select all empty elemenst of that type</li>
+                        <li><code>:not(selector)</code> select all elements that do not match selector. (:not(#someclass))</li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </details>
+
+
+        <div style="border: 1px solid black; padding: 10px;" class="test_div">
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 1</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 2</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 3</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 4</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 5</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 6</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 7</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 8</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 9</a>
+            <a style="outline: 1px solid red; margin: 5px" class="test_div2">i am 10</a>
+        </div>
+
+
+        <style>
+            a:nth-of-type(2n+1) {
+                background: blue;
+            }
+        </style>
+
+
+    </div>
+</body>
+</html>

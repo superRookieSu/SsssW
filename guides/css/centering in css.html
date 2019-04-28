@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Centering in CSS</title>
+    <link rel="stylesheet" href="../source/common.css">
+    <script type="text/javascript" src="../source/common.js"></script>
+    <style>
+        .item {
+            background-color: gray;
+            border: 1px solid red;
+            padding: 10px;
+        }
+
+        .container {
+            border: 1px solid black;
+            padding: 5px;
+            height: 600px;
+            margin-right: 20px;
+            flex: 3;
+        }
+
+        .sel_container {
+            flex: 1;
+        }
+
+        .flex_box {
+            display: flex;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body onload="setCSSByCreatedSelects()">
+    
+
+    <details open>
+        <summary class="sum_catlog">Centering</summary>
+        <div class="flex_box">
+            <div class="container">
+                <div class="item">item1</div>
+                <div class="item">item2</div>
+                <div class="item">item3</div>
+                <div class="item">item4</div>
+                <div class="item">item5</div>
+                <div class="item">item6</div>
+            </div>
+
+            <div class="sel_container">
+                <p><strong>CSS for container:</strong></p>
+                <script>
+                     createSelectForCSS(".sel_container", "display", ".container", ['block', 'flex', 'grid']);
+                     createSelectForCSS(".sel_container", "text-align", ".container", ['left', 'center', 'right']);
+                     createSelectForCSS(".sel_container", "align-items", ".container", ['start', 'end', 'stretch', 'center']);
+                     createSelectForCSS(".sel_container", "justify-content", ".container"
+                        , ['flex-start', 'center', 'flex-end', 'space-around', 'space-between']);
+                </script>
+                <p><strong>CSS for items:</strong></p>
+                <script>
+                     createSelectForCSS(".sel_container", "display", ".item", ['block', 'inline-block']);
+                     createSelectForCSS(".sel_container", "margin", ".item", ['0', '0 auto']);
+                     createSelectForCSS(".sel_container", "width", ".item", ['auto', '100px']);
+                     createSelectForCSS(".sel_container", "height", ".item", ['auto', '50px']);
+                </script>
+            </div>
+        </div>
+    </details>
+
+</body>
+</html>

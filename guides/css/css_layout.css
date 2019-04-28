@@ -1,0 +1,62 @@
+:root{
+}
+
+
+.flex_container {
+    width: 330px;
+    height: 330px;
+    display: flex;
+    border: 1px dashed gray;
+}
+
+.flex_item {
+    border: 1px solid gray;
+    color: white;
+}
+
+.flex_item:nth-of-type(odd) {
+    background-color: red;
+}
+
+.flex_item:nth-of-type(even) {
+    background-color: blue;
+}
+
+#flex_sel_div select[flex-property] {
+    background-color: rgb(220, 220, 220, 0.5);
+    border: 1px dashed gray;
+}
+
+.align_container {
+    width: 500px;
+    height: 150px;
+    border: 2px dashed gray;
+    display: flex;
+}
+
+.align_container > button:nth-of-type(odd) {
+    height: 50px;
+}
+
+.align_container > button:nth-of-type(even) {
+    width: 100px;
+}
+
+.align_container button:first-child {
+    align-self: flex-start;
+}
+
+.div_grid1 {
+    display: grid;
+    width: 600px;
+    height: 300px;
+    border: 1px dashed black;
+    grid-gap: 10px 15px;
+    grid-template-columns: repeat(3, 1fr) 30px 10%;
+    grid-template-rows: 20px auto 30%;
+}
+
+.div_grid1>div{
+    background: red;
+    border-color: 
+}

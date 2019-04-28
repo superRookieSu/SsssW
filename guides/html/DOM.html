@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Objedct Model</title>
+    <style>
+        code {
+            background-color: rgb(220, 220, 220, 0.5);
+        }
+        div {
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        function showIdSelector() {
+            var md = document.querySelector("#myDiv");
+            md.style.backgroundColor = "red";
+        }
+
+        function showClassSelector() {
+            var md = document.querySelector(".divClass");
+            md.style.backgroundColor = "red";
+        }
+    </script>
+</head>
+<body>
+    <h1>Document Object Model</h1>
+    <hr>
+    <h3>DOM API</h3>
+    <ul>
+        <li><code>document.getElementById(id)</code></li>
+        <li><code>document.getElementByTagName(tag name).item(0)</code></li>
+        <li><code>document.createElement(tag name)</code></li>
+        <li><code>document.appendChild(node instance)</code></li>
+        <li><code>element.innerHTML = "html text"</code></li>
+        <li><code>element.style.left</code></li>
+        <li><code>element.setAttribute()</code></li>
+        <li><code>element.getAttribute()</code></li>
+        <li><code>element.addEventListener</code></li>
+        <li><code>window.content</code></li>
+        <li><code>window.onload</code></li>
+        <li><code>window.dump</code></li>
+        <li><code>window.scrollTo</code></li>
+    </ul>
+    <h3>Selector</h3>
+    <ul>
+        <li><code>document.querySelector()</code></li>
+        <li><code>document.querySelectorAll()</code></li>
+        <li><code>element.querySelector()</code></li>
+        <li><code>element.querySelectorAll()</code></li>
+    </ul>
+    
+    <div id="myDiv"> i am myDiv </div>
+    <button onclick="showIdSelector()">set myDiv bg-color to red</button>
+    <div class="divClass"> my class is divClass</div>
+    <button onclick="showClassSelector()">set divClass bg-color to red</button>
+
+
+</body>
+</html>

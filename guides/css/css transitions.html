@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>css transitions</title>
+    <link rel="stylesheet" href="css_transitions.css">
+    <link rel="stylesheet" href="../source/common.css">
+</head>
+<body>
+     <p>
+        <code>transition:</code> [transition-property] [transition-duration] [transition-timing-function] [transition-delay], ...<br>
+        <code>transition-property: width, height, background, transform</code><br>
+        <code>transition-duration: 2s, 2s, 2s, 2s</code><br>
+        <code>transition-timing-function</code><br>
+        <code>transition-delay</code><br>
+    </p>
+    <div class="box1"></div>
+    <p>
+        short hand: <br>
+        <code>transition: width 2s, height 2s, background 2s, transform 2s;</code> 
+    </p>
+
+    <div class="box"></div>
+    
+    <div class="ball">clik me!!!</div>
+    <p><code>transition: all 1s;</code></p>
+    <p><code>ele.addEventlistener("transitionend", function (evt){});</code></p>
+    <script>
+          /* jshint esversion: 6 */ 
+
+        var b = document.querySelector(".box");
+        b.addEventListener("transitionend", function (){
+            console.log("box transition end");
+        },true);
+
+        var bl = document.querySelector(".ball");
+        bl.addEventListener("click", function (evt) {
+            let flag = Math.random() > 0.5 ? 1 : -1;
+            tx = (evt.clientX - 15 * flag) + "px";
+            ty = (evt.clientY - 15 * flag) + "px";
+            bl.style.left = tx;
+            bl.style.top = ty;
+        });
+    </script>
+
+    <p>
+        from: 
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">
+            Using CSS Transitions
+        </a>
+    </p>
+</body>
+</html>

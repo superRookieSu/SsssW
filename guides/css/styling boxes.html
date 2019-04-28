@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styling Boxes</title>
+    <link rel="stylesheet" href="../source/common.css">
+    <link rel="stylesheet" href="styling_boxes.css">
+    <script type="text/javascript" src="styling_boxes.js"></script>
+</head>
+<body>
+    <p><span class="chapter">box model rectangle & box-sizing</span></p>
+    <div>
+        <!-- box model -->
+        <div>
+            <code><label for="bsSel">box-sizing: </label></code>
+            <select name="bsSel" onchange="box_sizing_changed(event)">
+                <option value="border-box">border-box;</option>
+                <option value="content-box">content-box;</option>
+            </select>
+        </div>
+        <div class="boxContainer">
+            <div class="box">
+                <p style="background-color: gray;margin: 0;height: 100%;">
+                    <code>
+                        width: 480px;<br>
+                        height: 360px;<br>
+                        padding: 30px;<br>
+                        margin: 30px;<br>
+                        <span id="boxSizingSpan">box-sizing: border-box;</span>
+                    </code>
+                    <br>
+                    <br>
+                    same <code>width</code> and <code>height</code>, different <code>box-sizing</code>;
+                </p>
+            </div>
+        </div>
+        <div >
+            <div class="boxIcon" style="border: 1px dashed black;"></div> margin
+            <div class="boxIcon" style="background: black;"></div> border
+            <div class="boxIcon" style="background: red;"></div> padding
+            <div class="boxIcon" style="background: gray;"></div> content
+        </div>
+
+        <!-- overflow -->
+        <p><span class="chapter">overflow</span></p>
+        <div>
+            <code><label for="ofSel">overflow: </label></code>
+            <select name="ofSel" onchange="overflow_changed(event)">
+                <option value="auto" label="aa">auto;</option>
+                <option value="hidden">hidden;</option>
+                <option value="visible">visible;</option>
+            </select>
+        </div>
+        <div class="overflow">
+            <code>overflow: auto;</code>
+            <div>
+                    <code>auto: </code> content is hidden, scroll bars are shown<br>
+                     <code>hidden: </code>content is hidden, scroll bars are hidden<br>
+                    <code>visible: </code>content is shown, scroll bars are hidden<br>
+                </code>
+            </div>
+        </div>
+
+        <!-- background-clip -->
+        <p><span class="chapter">background-clip</span></p>
+        <div>
+            <code><label for="bcSel">background-clip: </label></code>
+            <select name="bcSel" onchange="background_clip_changed(event)">
+                <option value=" border-box" label="aa"> border-box;</option>
+                <option value="padding-box">padding-box;</option>
+                <option value="content-box">content-box;</option>
+            </select>
+        </div>
+        <div class="background-clip">
+            <code>background-clip: border-box;</code>
+            <p>
+                <code>border-box: </code> the bg extends to the outside edge of the border<br>
+                <code>padding-box: </code>the bg extends to the outside edge of the padding<br>
+                <code>content-box: </code>the bg within the content box<br>
+            </p>
+        </div>
+
+        <!-- background-clip -->
+        <p><span class="chapter">margin collapsing</span></p>
+        <p class="note">if two adjacent elements both have the margin set on them. and the two margins touch, the larger of the two remains, and the smaller one disappears. (effect on vertical, not horizontal) </p>
+        <div style="padding: 5px; border: 1px dashed black; display: inline-block;margin-right: 20px;">
+            <div style="border: 2px solid black; margin-bottom: 10px; width: 200px;height: 50px;">
+                <code>margin-bottom: 10px;</code>
+            </div>
+            <div style="border: 2px solid black; margin-top:  20px; width: 200px;height: 50px;">
+                <code>margin-top: 20px;</code>
+            </div>
+        </div>
+
+         <!-- background-clip -->
+        <p><span class="chapter">outline</span></p>
+        <div style="border: 1px dashed black;padding: 5px; width: 400px;" >
+            <div class="outline">
+                <code>
+                    width: 100%;<br>
+                    height: 200px;<br>
+                    border: 10px solid black;<br>
+                    border-radius: 50px;<br>
+                    outline: 10px red dashed;<br>
+                </code>
+            </div>
+            <p>parent div(the dashed box)<br><code>border: 1px dashed black;padding: 5px</code></p>
+            <p><code>outline</code> is not part of the box model and never <br>take up space(can't changing the size of the box)</p>
+        </div>
+        
+        <!-- background -->
+        <p><span class="chapter">background</span></p>
+        <div class="note">
+            <p>
+                <code>background-color : rgba(255,255,255, 0.3);</code> -default color is not <code>white</code> but <code>transparent</code>
+            </p>
+            <p><code>background-image : </code>  - bg image</p>
+                <ul><code style="color: blue">ulr(path)</code> : image path</ul>
+                <ul><code style="color: blue">linear-gradient()</code> : color gradients</ul>
+            <p><code>background-repeat: repeat</code>(default), for <code>background-image</code></p>
+            <ul>
+                <li><code>repeat</code> : repeat both vertical and horizontal.</li>
+                <li><code>repeat-x</code> : repeat horizontal</li>
+                <li><code>repeat-y</code> : repeat vertical</li>
+                <li><code>no-repeat</code> : will not repeat at all.</li>
+            </ul>
+            <p><code>background-position</code> : x y, for <code>background-image</code></p> 
+            <ul>
+                <li><code>background-position: 20px, 20px</code></li>
+                <li><code>background-position: 20rem 20rem</code></li>
+                <li><code>background-position: 90% 20%</code></li>
+                <li><code>background-position: right center;</code></li>
+            </ul>
+
+            <p>color gradient:</p>
+            <code>background-image: linear-gradient(to bottom, red, blue 20%, red)</code>:
+            <div style="width: 600px; height: 100px; background-image: linear-gradient(to bottom, red, blue 20%, red)"></div>
+            <code>background-image: linear-gradient(180deg, red, blue 20px, red)</code>:
+            <div style="width: 600px; height: 100px; background-image: linear-gradient(180deg, red, blue 20px, red)"></div>
+
+            <p>multiple backgrounds</p>
+            <code>background: <br>
+                    url(https://mdn.mozillademos.org/files/13060/border-image.png) no-repeat<br>
+                    ,url(https://mdn.mozillademos.org/files/13026/fire-ball-icon.png )<br>
+                    ,linear-gradient(to right, yellow, #dddd00 50%, red);</code>
+            <div style="width: 600px; height: 200px;border: 1px solid black; 
+                background: 
+                    url(https://mdn.mozillademos.org/files/13060/border-image.png) no-repeat
+                    ,url(https://mdn.mozillademos.org/files/13026/fire-ball-icon.png )
+                    ,linear-gradient(to right, yellow, #dddd00 50%, red);"></div>
+        </div>
+
+        <!-- border -->
+        <p><span class="chapter">border</span></p>
+        <div class="note" style="border: 1px solid black">
+            <code>border: border-width border-style border-color;</code><br>
+            <code>border-radius: 20px;</code> used like <code>margin</code>
+            <ul>
+                <li><code>border-radius: 20px;</code> // all the corners use the  same radius.</li>
+                <li><code>border-radius: 20px 10px;</code> // 20px is top left and bottom right, 10px is top right and bottom left</li>
+                <li><code>border-radius: 20px 10px 30px 0;</code> //you know that.
+                 <li><code>border-radius: 30px/20px 50px/ 30px;</code> //ellilptical corner, use x-radius / y-radius;
+            </ul>
+            <div style="border: 2px solid blue; border-radius: 40px/20px; padding: 10px;">
+                <code>border: 2px solid blue;<br> border-radius: 40px/20px;</code>
+            </div>
+
+
+            <code>border-image-source: url(xxx)</code> ...
+            <code>border-image-slice: 40</code> ...
+            <code>border-image-repeat: stretch</code> ...
+            <ul>
+                <li><code>stretch:</code> the default, images are stretched to fill the border, not recommended.</li>
+                <li><code>repeat:</code> the default, images are repeated util it to fill the border</li>
+                ...
+            </ul>
+            shorthand: <br>
+            <code>border-image: url, slice, repeat</code>
+            
+        </div>
+
+        <p><span class="chapter">box-shadow</span></p>
+        <div class="note">
+            <p><code>box-shadow: 5px 5px 5px rgba(255,225,0,0.5);</code></p>
+            four params in <code>box-shadow</code>
+            <ol>
+                <li>horizontal offset</li>
+                <li>vertical offset</li>
+                <li>blur radius</li>
+                <li>base color</li>
+            </ol>
+            <p><code>inset</code>: make the shadow become an inner shadow</p>
+            <div style="height: 100px;background-color: red; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+            box-shadow: 5px 5px 5px rgba(0,0,0,1)">
+                outer shadow<br>
+                <code>box-shadow: 5px 5px 5px rgba(0,0,0,1)</code>
+            </div>
+
+            <div style="height: 100px;background-color: red; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+            box-shadow: inset 5px 5px 5px rgba(0,0,0,1);margin-top: 20px;">
+                inner shadow<br>
+                <code>box-shadow: inset 5px 5px 5px rgba(0,0,0,1)</code>
+            </div>
+        </div>
+
+        <p><span class="chapter">filters</span></p>
+        <div class="note">
+            <div class="filterBox" 
+            style="background: url(https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg) no-repeat;
+            background-position: right center;">
+                <code></code>
+            </div>
+
+            <label for="filterSel">select the filter</label>
+            <select name="filterSel" onchange="filterSelected(value, '.filterBox')" style="width: 300px;">
+                <option value="none">none</option>
+                <option value="blur(1px)">blur(1px)</option>
+                <option value="brightness(0.5)">brightness(0.5)</option>
+                <option value="contrast(200%)">contrast(200%)</option>
+                <option value="drop-shadow(10px 10px 6px black)">drop-shadow(10px 10px 6px black)</option>
+                <option value="grayscale(100%)">grayscale(100%)</option>
+                <option value="hue-rotate(90deg)">hue-rotate(90deg)</option>
+                <option value="invert(100%)">invert(100%)</option>
+                <option value="opacity(50%)">opacity(50%)</option>
+                <option value="saturate(200%)">saturate(200%)</option>
+                <option value="sepia(100%)">sepia(100%)</option>
+                <option value="invert(100%) drop-shadow(10px 10px 6px black)">invert(100%) drop-shadow(10px 10px 6px black)</option>
+            </select>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <a class="test" href="#">top</a>
+    </div>
+</body>
+</html>
