@@ -18,6 +18,7 @@
         <item name="XHR-Fetch.html">XMLHttpRequest-Fetch</item>
         <item name="JS index.html">JS index</item>
         <item name="JS Design Partterns.html">JS Design Partterns</item>
+        <item name="test.html">111111</item>
     </js>
 
     <ts id="tsDetail" summary="TS" open="true">
